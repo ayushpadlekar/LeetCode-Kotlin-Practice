@@ -7,10 +7,10 @@
 // Output: [0,1]
 // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
+// 1st way - for loops
 class Solution {
 
     fun twoSum(nums: IntArray, target: Int): IntArray {
-
         for (i in 0 until nums.size) {
             for (j in i+1 until nums.size) {
                 if (nums[i] + nums[j] == target) {
@@ -21,3 +21,32 @@ class Solution {
     return intArrayOf()
     }
 }
+
+// 2nd way - sorting - 2 pointer
+nums = nums.sorted()
+println(nums)
+var i = 0
+var j = nums.size-1
+while(i < j) {
+    if(nums[i] + nums[j] == target) {
+        println("$i $j")
+        return
+    } else if(nums[i] + nums[j] > target) {
+        j--
+    } else if(nums[i] + nums[j] < target) {
+        i++
+    }
+}
+
+
+// 3rd way - map
+var map = mutableMapOf<Int, Int>()
+for(i in nums.indices) {
+    val complement = target - nums[i]
+    if(map.contains(complement)) {
+        println("${map.getValue(complement)}, $i")
+        return
+    }
+    map.put(nums[i], i)
+}
+println("No results")
