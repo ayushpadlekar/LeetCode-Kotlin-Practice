@@ -13,23 +13,18 @@
 // Output: 3
 // Explanation: Because the 4th row is incomplete, we return 3.
 
-
+// Simple method - Linear
 class Solution {
     fun arrangeCoins(n: Int): Int {
-        var n = n.toLong()
-        var start = 1.toLong()
-        var end = n
-      
         
-        while(start <= end){
-            var mid = start+ (end - start) / 2
-            var sum = mid*(mid+1)/2
-
-            if(sum == n) return mid.toInt()
-            else if(sum > n) end = mid - 1
-            else start = mid + 1
-
+        var n = n
+        var ans = 0
+        var i = 1
+        while(n>=i) {
+            n = n - i
+            i++
+            ans++
         }
-        return end.toInt()
+        return ans
     }
 }
